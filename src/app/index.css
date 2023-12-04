@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --surface-color: #ffffff;
+  --primary-color: #3390ec;
+  --danger-color: #df3f40;
+  --primary-text-color: #000000;
+  --secondary-text-color: #707579;
+  --input-search-border-color: #dfe1e5;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --surface-color: #212121;
+    --primary-color: #8774e1;
+    --danger-color: #ff595a;
+    --primary-text-color: #ffffff;
+    --secondary-text-color: #aaaaaa;
+    --input-search-border-color: #2f2f2f;
+  }
+}
