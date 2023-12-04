@@ -1,7 +1,5 @@
 import { onMount } from "solid-js";
 
-import { className as cn } from '@/shared/lib'
-
 const rippleClick = (element: HTMLElement): void => {
   const handleMouseDown = (event: MouseEvent): void => {
     const diameter = Math.max(element.clientWidth, element.clientWidth)
@@ -9,7 +7,7 @@ const rippleClick = (element: HTMLElement): void => {
 
     const circleEl = document.createElement('div')
 
-    circleEl.className = cn('absolute rounded-full animate-ripple bg-black opacity-10')
+    circleEl.className = 'absolute rounded-full animate-ripple bg-black opacity-10'
 
     circleEl.style.width = circleEl.style.height = `${diameter}px`;
     circleEl.style.left = `${event.clientX - (element.offsetLeft + radius)}px`;
