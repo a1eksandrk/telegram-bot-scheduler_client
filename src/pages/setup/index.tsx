@@ -1,32 +1,23 @@
 import { createSignal } from 'solid-js'
 
-import { createForm, isEmptyString, className as cn } from '@/shared/lib'
-
-import { WatchingMonkeyEmoji, PasswordInput, SubmitButton } from './ui'
+import { TokenAuthorizationForm } from '@/features'
+import { WatchingMonkeyEmoji } from '@/entities'
+import { className as cn } from '@/shared/lib'
 
 import type { Component } from 'solid-js'
-import type { TValidation } from '@/shared/types'
-
-interface IFormData { token: string }
-
-const initialValues: IFormData = { token: '' }
-const validation: TValidation<IFormData> = { token: value => !isEmptyString(value) }
+import type { TTokenAuthorizationSubmitHandler } from '@/features'
 
 export const SetupPage: Component = () => {
-  const [showToken, setShowToken] = createSignal<boolean>(false)
+  const [isTokenVisible, setIsTokenVisible] = createSignal<boolean>(false)
 
-  const { form, errors } = createForm<IFormData>({
-    initialValues,
-    validation,
-    onSubmit: () => {},
-  })
-
-  const alert = (): boolean => errors().token
+  const handleSubmit: TTokenAuthorizationSubmitHandler = (values, errors): void => {
+    console.log(values, errors)
+  }
 
   return (
     <section class={ cn('flex justify-center items-center w-screen h-screen') }>
       <div class={ cn('flex flex-col h-1/2 items-center') }>
-        <WatchingMonkeyEmoji watch={ showToken() } />
+        <WatchingMonkeyEmoji isWatching={ isTokenVisible() } />
 
         <p class={ cn('flex flex-col gap-3 items-center mt-12 mb-12 text-3xl font-medium') }>
           Введите токен вашего бота
@@ -38,13 +29,11 @@ export const SetupPage: Component = () => {
           </span>
         </p>
 
-        <form class={ cn('flex flex-col gap-y-6 w-96') } { ...form }>
-          <PasswordInput label="Токен" name="token" alert={ alert() } showPassword={ showToken() } onShowPasswordChange={ setShowToken } />
-
-          <SubmitButton>
-            Далее
-          </SubmitButton>
-        </form>
+        <TokenAuthorizationForm
+          isTokenVisible={ isTokenVisible() }
+          onTokenVisibleChange={ setIsTokenVisible }
+          onSubmit={ handleSubmit }
+        />
       </div>
     </section>
   )
