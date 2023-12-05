@@ -15,7 +15,7 @@ export const SetupPage: Component = () => {
   }
 
   return (
-    <section class={ cn('flex justify-center items-center w-screen h-screen') }>
+    <section class={ cn('flex justify-center items-center w-d-screen h-d-screen') }>
       <div class={ cn('flex flex-col h-1/2 items-center') }>
         <WatchingMonkeyEmoji isWatching={ isTokenVisible() } />
 

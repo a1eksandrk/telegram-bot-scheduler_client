@@ -21,3 +21,8 @@
     --input-search-border-color: #2f2f2f;
   }
 }
+
+@layer utilities {
+  .h-d-screen { height: 100dvh; }
+  .w-d-screen { width: 100dvw; }
+}
