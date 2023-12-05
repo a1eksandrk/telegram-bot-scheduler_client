@@ -1,4 +1,4 @@
-import { TokenInput } from '@/entities'
+import { TokenInput } from '@/entities/token-input'
 import { Button } from '@/shared/ui'
 import { createForm, isEmptyString, className as cn } from '@/shared/lib'
 
@@ -18,7 +18,7 @@ interface ITokenAuthorizationForm {
 const initialValues: IFormData = { token: '' }
 const validation: TValidation<IFormData> = { token: value => !isEmptyString(value) }
 
-const TokenAuthorizationForm: Component<ITokenAuthorizationForm> = props => {
+export const TokenAuthorizationForm: Component<ITokenAuthorizationForm> = props => {
   const { form, errors } = createForm<IFormData>({
     initialValues,
     validation,
@@ -43,5 +43,3 @@ const TokenAuthorizationForm: Component<ITokenAuthorizationForm> = props => {
     </form>
   )
 }
-
-export default TokenAuthorizationForm

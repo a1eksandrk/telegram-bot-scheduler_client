@@ -1,11 +1,11 @@
 import { createSignal } from 'solid-js'
 
-import { TokenAuthorizationForm } from '@/features'
-import { WatchingMonkeyEmoji } from '@/entities'
 import { className as cn } from '@/shared/lib'
+import { WatchingMonkeyEmoji } from '@/entities/watching-moneky-emoji'
+import { TokenAuthorizationForm } from '@/features/token-authorization'
 
 import type { Component } from 'solid-js'
-import type { TTokenAuthorizationSubmitHandler } from '@/features'
+import type { TTokenAuthorizationSubmitHandler } from '@/features/token-authorization'
 
 export const SetupPage: Component = () => {
   const [isTokenVisible, setIsTokenVisible] = createSignal<boolean>(false)

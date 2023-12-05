@@ -23,7 +23,7 @@ const textType: Record<string, TTextType> = {
   PASSWORD: 'password'
 } as const
 
-const TokenInput: Component<ITokenInputProps> = props => {
+export const TokenInput: Component<ITokenInputProps> = props => {
   const [local, inputProps] = splitProps(props, ['isTokenVisible', 'onTokenVisibleChange'])
 
   const [isTokenVisible, setIsTokenVisible] = createSignal(false)
@@ -67,5 +67,3 @@ const TokenInput: Component<ITokenInputProps> = props => {
     </div>
   )
 }
-
-export default TokenInput

@@ -6,7 +6,7 @@ interface IWatchingMonkeyEmoji {
   isWatching?: boolean
 }
 
-const WatchingMonkeyEmoji: Component<IWatchingMonkeyEmoji> = props => {
+export const WatchingMonkeyEmoji: Component<IWatchingMonkeyEmoji> = props => {
   return (
     <span class="text-9xl leading-9xl select-none">
       <Show when={ props.isWatching } fallback={ '🙈' }>
@@ -15,5 +15,3 @@ const WatchingMonkeyEmoji: Component<IWatchingMonkeyEmoji> = props => {
     </span>
   )
 }
-
-export default WatchingMonkeyEmoji
