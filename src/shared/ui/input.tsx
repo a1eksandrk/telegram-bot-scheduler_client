@@ -4,14 +4,18 @@ import { isEmptyString, className as cn } from '@/shared/lib'
 
 import type { Component, JSX } from 'solid-js'
 
+type InputSize = 'small' | 'large'
+
 interface IInputProps extends JSX.InputHTMLAttributes<HTMLInputElement> {
+  size?: InputSize
   label?: string
   hasAlert?: boolean
+  prefixIcon?: JSX.Element
 }
 
 const Input: Component<IInputProps> = props => {
-  const merged = mergeProps({ value: '' }, props)
-  const [local, inputProps] = splitProps(merged, ['label', 'hasAlert'])
+  const merged = mergeProps({ value: '', size: 'large' }, props)
+  const [local, inputProps] = splitProps(merged, ['size', 'label', 'hasAlert', 'prefixIcon'])
 
   const inputId = createUniqueId()
 
@@ -28,7 +32,11 @@ const Input: Component<IInputProps> = props => {
   }
 
   return (
-    <div class="relative flex items-center h-14 w-full text-[#9e9e9e]">
+    <div class={ cn(
+      'relative flex items-center w-full text-[#9e9e9e]',
+      { 'h-10': local.size === 'small' },
+      { 'h-14': local.size === 'large' },
+    ) }>
       <input
         { ...inputProps }
         id={ id() }
@@ -38,6 +46,7 @@ const Input: Component<IInputProps> = props => {
           'hover:border-primary-color',
           'focus:outline-2 focus:outline-primary-color',
           { 'border-danger-color hover:border-danger-color focus:outline-danger-color': local.hasAlert },
+          { 'pl-12': local.prefixIcon },
           inputProps.class
         ) }
       />
@@ -56,6 +65,17 @@ const Input: Component<IInputProps> = props => {
         >
           { local.label }
         </label>
+      </Show>
+
+      <Show when={ local.prefixIcon }>
+        <span class={ cn(
+          'absolute p-1 left-3 pointer-events-none select-none text-2xl',
+          'hover:text-primary-color',
+          'peer-hover:text-primary-color',
+          'peer-focus:text-primary-color',
+        ) }>
+          { local.prefixIcon }
+        </span>
       </Show>
     </div>
   )
