@@ -1,5 +1,5 @@
 import { Show, createSignal, splitProps } from 'solid-js'
-import { AiFillEye, AiFillEyeInvisible } from 'solid-icons/ai'
+import { IoEye, IoEyeOff } from 'solid-icons/io'
 
 import { Input } from '@/shared/ui'
 import { isBoolean, className as cn } from '@/shared/lib'
@@ -18,18 +18,13 @@ interface ITokenInputProps {
 
 type TTextType = 'text' | 'password'
 
-const textType: Record<string, TTextType> = {
-  TEXT: 'text',
-  PASSWORD: 'password'
-} as const
-
 export const TokenInput: Component<ITokenInputProps> = props => {
   const [local, inputProps] = splitProps(props, ['isTokenVisible', 'onTokenVisibleChange'])
 
   const [isTokenVisible, setIsTokenVisible] = createSignal(false)
 
   const show = (): boolean => local.isTokenVisible ?? isTokenVisible()
-  const type = (): TTextType => show() ? textType.TEXT : textType.PASSWORD
+  const type = (): TTextType => show() ? 'text' : 'password'
 
   const handleTokenVisibleChange = (): void => {
     if (isBoolean(local.isTokenVisible)) {
@@ -60,8 +55,8 @@ export const TokenInput: Component<ITokenInputProps> = props => {
           'hover:text-primary-text-color'
         ) }
       >
-        <Show when={ !show() } fallback={ <AiFillEyeInvisible /> }>
-          <AiFillEye />
+        <Show when={ !show() } fallback={ <IoEyeOff /> }>
+          <IoEye />
         </Show>
       </span>
     </div>
