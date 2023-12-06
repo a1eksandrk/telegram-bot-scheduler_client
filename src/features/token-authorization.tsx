@@ -28,7 +28,7 @@ export const TokenAuthorizationForm: Component<ITokenAuthorizationForm> = props 
   const alert = (): boolean => errors().token
 
   return (
-    <form class={ cn('flex flex-col gap-y-6 w-96') } { ...form }>
+    <form  { ...form } class={ cn('flex flex-col gap-y-6 w-96') }>
       <TokenInput
         name="token"
         label="Токен"
