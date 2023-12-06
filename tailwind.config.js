@@ -16,12 +16,12 @@ export default {
         },
       },
       colors: {
-        "surface-color": "var(--surface-color)",
-        "primary-color": "var(--primary-color)",
-        "danger-color": "var(--danger-color)",
-        "primary-text-color": "var(--primary-text-color)",
-        "secondary-text-color": "var(--secondary-text-color)",
-        "border-color": "var(--border-color)",
+        "surface-color": "rgb(var(--surface-color), <alpha-value>)",
+        "primary-color": "rgb(var(--primary-color), <alpha-value>)",
+        "danger-color": "rgb(var(--danger-color), <alpha-value>)",
+        "primary-text-color": "rgb(var(--primary-text-color), <alpha-value>)",
+        "secondary-text-color": "rgb(var(--secondary-text-color), <alpha-value>)",
+        "border-color": "rgb(var(--border-color), <alpha-value>)",
       }
     },
   },
