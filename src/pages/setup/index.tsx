@@ -15,8 +15,8 @@ export const SetupPage: Component = () => {
   }
 
   return (
-    <section class={ cn('flex justify-center items-center w-d-screen h-d-screen') }>
-      <div class={ cn('flex flex-col h-1/2 items-center') }>
+    <main class={ cn('flex justify-center items-center w-d-screen h-d-screen') }>
+      <section class={ cn('flex flex-col h-1/2 items-center') }>
         <WatchingMonkeyEmoji isWatching={ isTokenVisible() } />
 
         <p class={ cn('flex flex-col gap-3 items-center mt-12 mb-12 text-3xl font-medium') }>
@@ -34,7 +34,7 @@ export const SetupPage: Component = () => {
           onTokenVisibleChange={ setIsTokenVisible }
           onSubmit={ handleSubmit }
         />
-      </div>
-    </section>
+      </section>
+    </main>
   )
 }

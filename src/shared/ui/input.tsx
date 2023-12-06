@@ -34,7 +34,7 @@ const Input: Component<IInputProps> = props => {
         id={ id() }
         onInput={ handleInput }
         class={ cn(
-          'peer h-full w-full pl-4 pr-12 text-primary-text-color bg-surface-color border border-input-search-border-color rounded-lg leading-none',
+          'peer h-full w-full pl-4 pr-12 text-primary-text-color bg-surface-color border border-border-color rounded-lg leading-none',
           'hover:border-primary-color',
           'focus:outline-2 focus:outline-primary-color',
           { 'border-danger-color hover:border-danger-color focus:outline-danger-color': local.hasAlert },

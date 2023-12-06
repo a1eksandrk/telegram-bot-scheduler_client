@@ -21,7 +21,7 @@ export default {
         "danger-color": "var(--danger-color)",
         "primary-text-color": "var(--primary-text-color)",
         "secondary-text-color": "var(--secondary-text-color)",
-        "input-search-border-color": "var(--input-search-border-color)",
+        "border-color": "var(--border-color)",
       }
     },
   },

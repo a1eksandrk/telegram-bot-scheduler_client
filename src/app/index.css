@@ -8,7 +8,7 @@
   --danger-color: #df3f40;
   --primary-text-color: #000000;
   --secondary-text-color: #707579;
-  --input-search-border-color: #dfe1e5;
+  --border-color: #dfe1e5;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -18,7 +18,7 @@
     --danger-color: #ff595a;
     --primary-text-color: #ffffff;
     --secondary-text-color: #aaaaaa;
-    --input-search-border-color: #2f2f2f;
+    --border-color: #2f2f2f;
   }
 }
 
