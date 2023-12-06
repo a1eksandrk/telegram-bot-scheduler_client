@@ -8,12 +8,15 @@ import type { IBaseFormType, TValidation, TFormErrors } from '@/shared/types'
 interface IForm {
   onInput: JSX.InputEventHandler<HTMLFormElement, InputEvent>
   onSubmit: JSX.EventHandler<HTMLFormElement, Event>
+  onReset: () => void
 }
 
 interface IFormOptions<FormType extends IBaseFormType> {
   initialValues: FormType
   validation?: TValidation<FormType>
+  onInput?: (name: keyof FormType, value: string) => void
   onSubmit?: (values: FormType, errors: TFormErrors<FormType>) => void
+  onReset?: () => void
 }
 
 interface IFormController<FormType extends IBaseFormType> {
@@ -43,7 +46,7 @@ const validate = <FormType extends IBaseFormType>(values: FormType, validation?:
   }, {} as TFormErrors<FormType>)
 }
 
-const createForm = <FormType extends IBaseFormType>({ initialValues, validation, onSubmit }: IFormOptions<FormType>): IFormController<FormType> => {
+const createForm = <FormType extends IBaseFormType>({ initialValues, validation, onInput, onSubmit, onReset }: IFormOptions<FormType>): IFormController<FormType> => {
   const [values, setValues] = createSignal<FormType>(initialValues)
   const [errors, setErrors] = createSignal<TFormErrors<FormType>>(getInitialErrors(initialValues, false))
 
@@ -58,6 +61,8 @@ const createForm = <FormType extends IBaseFormType>({ initialValues, validation,
 
     setErrors(prev => ({ ...prev, [name]: false }))
     setValues(prev => ({ ...prev, [name]: value }))
+
+    onInput?.(name, value)
   }
 
   const handleSubmit: JSX.EventHandler<HTMLFormElement, Event> = event => {
@@ -70,10 +75,15 @@ const createForm = <FormType extends IBaseFormType>({ initialValues, validation,
     onSubmit?.(values(), errors)
   }
 
+  const handleReset = (): void => {
+    onReset?.()
+  }
+
   return {
     form: {
       onInput: handleInput,
-      onSubmit: handleSubmit
+      onSubmit: handleSubmit,
+      onReset: handleReset,
     },
     values,
     errors
