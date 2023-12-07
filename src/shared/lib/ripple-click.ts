@@ -1,4 +1,4 @@
-import { onMount } from "solid-js";
+import { onMount } from 'solid-js'
 
 const rippleClick = (element: HTMLElement): void => {
   const handleMouseDown = (event: MouseEvent): void => {
@@ -9,12 +9,17 @@ const rippleClick = (element: HTMLElement): void => {
 
     circleEl.className = 'absolute rounded-full animate-ripple bg-black opacity-10'
 
-    circleEl.style.width = circleEl.style.height = `${diameter}px`;
-    circleEl.style.left = `${event.clientX - (element.offsetLeft + radius)}px`;
-    circleEl.style.top = `${event.clientY - (element.offsetTop + radius)}px`;
+    circleEl.style.width = circleEl.style.height = `${diameter}px`
+    circleEl.style.left = `${event.clientX - (element.offsetLeft + radius)}px`
+    circleEl.style.top = `${event.clientY - (element.offsetTop + radius)}px`
 
-    circleEl.addEventListener('animationend',  circleEl.remove)
+    const handleAnimationEnd = (): void => {
+      circleEl.remove()
+    }
 
+    circleEl.addEventListener('animationend', handleAnimationEnd)
+
+    element.classList.add('relative', 'overflow-hidden')
     element.appendChild(circleEl)
   }
 
@@ -25,10 +30,11 @@ const rippleClick = (element: HTMLElement): void => {
 
 export default rippleClick
 
-declare module "solid-js" {
+declare module 'solid-js' {
+  // eslint-disable-next-line @typescript-eslint/no-namespace
   namespace JSX {
     interface DirectiveFunctions {
-      rippleClick: typeof rippleClick;
+      rippleClick: typeof rippleClick
     }
   }
 }
