@@ -1,6 +1,6 @@
 import { splitProps } from 'solid-js'
 
-import { rippleClick, className as cn  } from '@/shared/lib'
+import { rippleClick, className as cn } from '@/shared/lib'
 
 import type { Component, JSX } from 'solid-js'
 
