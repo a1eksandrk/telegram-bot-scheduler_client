@@ -1,5 +1,5 @@
 import { Show, createSignal, splitProps } from 'solid-js'
-import { IoEye, IoEyeOff } from 'solid-icons/io'
+import { IoEyeOutline, IoEyeOffOutline } from 'solid-icons/io'
 
 import { Input } from '@/shared/ui'
 import { isBoolean, className as cn } from '@/shared/lib'
@@ -55,8 +55,8 @@ export const TokenInput: Component<ITokenInputProps> = props => {
           'hover:text-primary-text-color'
         ) }
       >
-        <Show when={ !show() } fallback={ <IoEyeOff /> }>
-          <IoEye />
+        <Show when={ !show() } fallback={ <IoEyeOffOutline /> }>
+          <IoEyeOutline />
         </Show>
       </span>
     </div>
