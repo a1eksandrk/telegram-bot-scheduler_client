@@ -1,7 +1,12 @@
 env:
   browser: true
   es2021: true
-extends: standard-with-typescript
+plugins:
+  - solid
+extends:
+  - eslint:recommended
+  - plugin:solid/recommended
+  - standard-with-typescript
 parserOptions:
   ecmaVersion: latest
   sourceType: module
@@ -14,5 +19,9 @@ rules:
   object-curly-spacing:
     - error
     - always
-  @typescript-eslint/consistent-type-assertions: none
-  @typescript-eslint/consistent-indexed-object-style: none
+
+  solid/no-react-specific-props: error
+
+  "@typescript-eslint/strict-boolean-expressions": 0
+  "@typescript-eslint/consistent-type-assertions": 0
+  "@typescript-eslint/consistent-indexed-object-style": 0
