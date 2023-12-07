@@ -2,7 +2,7 @@ import { TokenInput } from '@/entities/token-input'
 import { Button } from '@/shared/ui'
 import { createForm, isEmptyString, className as cn } from '@/shared/lib'
 
-import type { Component } from "solid-js";
+import type { Component } from 'solid-js'
 import type { TValidation, TFormErrors } from '@/shared/types'
 
 export type TTokenAuthorizationSubmitHandler = (values: IFormData, errors: TFormErrors<IFormData>) => void
@@ -22,13 +22,13 @@ export const TokenAuthorizationForm: Component<ITokenAuthorizationForm> = props 
   const { form, errors } = createForm<IFormData>({
     initialValues,
     validation,
-    onSubmit: props.onSubmit,
+    onSubmit: props.onSubmit
   })
 
   const alert = (): boolean => errors().token
 
   return (
-    <form  { ...form } class={ cn('flex flex-col gap-y-6 w-96') }>
+    <form { ...form } class={ cn('flex flex-col gap-y-6 w-96') }>
       <TokenInput
         name="token"
         label="Токен"
