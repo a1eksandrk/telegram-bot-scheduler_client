@@ -26,24 +26,28 @@ interface IFormController<FormType extends IBaseFormType> {
 }
 
 const getInitialErrors = <FormType extends IBaseFormType>(values: FormType, initialValue?: boolean): TFormErrors<FormType> => {
-  return Object.entries(values).reduce((errors, [name]) => {
+  const initialErrors = {} as TFormErrors<FormType>
+
+  return Object.entries(values).reduce<TFormErrors<FormType>>((errors, [name]) => {
     setProperty(errors, name, initialValue)
 
     return errors
-  }, {} as TFormErrors<FormType>)
+  }, initialErrors)
 }
 
 const validate = <FormType extends IBaseFormType>(values: FormType, validation?: TValidation<FormType>): TFormErrors<FormType> => {
-  return Object.entries(values).reduce((errors, [name, value]) => {
+  const initialErrors = {} as TFormErrors<FormType>
+
+  return Object.entries(values).reduce<TFormErrors<FormType>>((errors, [name, value]) => {
     const validator = validation?.[name]
 
-    const isInvalid: boolean | undefined = !validator?.(value)
+    const isInvalid: boolean = !validator?.(value)
     const error: boolean = isInvalid ?? false
 
     setProperty(errors, name, error)
 
     return errors
-  }, {} as TFormErrors<FormType>)
+  }, initialErrors)
 }
 
 const createForm = <FormType extends IBaseFormType>({ initialValues, validation, onInput, onSubmit, onReset }: IFormOptions<FormType>): IFormController<FormType> => {
@@ -59,8 +63,8 @@ const createForm = <FormType extends IBaseFormType>({ initialValues, validation,
 
     const { name, value } = target
 
-    setErrors(prev => ({ ...prev, [name]: false }))
     setValues(prev => ({ ...prev, [name]: value }))
+    setErrors(prev => ({ ...prev, [name]: false }))
 
     onInput?.(name, value)
   }
@@ -76,6 +80,9 @@ const createForm = <FormType extends IBaseFormType>({ initialValues, validation,
   }
 
   const handleReset = (): void => {
+    setValues(prev => ({ ...prev, ...initialValues }))
+    setErrors(prev => ({ ...prev, ...getInitialErrors(initialValues, false) }))
+
     onReset?.()
   }
 
@@ -83,7 +90,7 @@ const createForm = <FormType extends IBaseFormType>({ initialValues, validation,
     form: {
       onInput: handleInput,
       onSubmit: handleSubmit,
-      onReset: handleReset,
+      onReset: handleReset
     },
     values,
     errors
