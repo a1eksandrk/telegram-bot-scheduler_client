@@ -35,7 +35,7 @@ const Input: Component<IInputProps> = props => {
     <div class={ cn(
       'relative flex items-center w-full text-[#9e9e9e]',
       { 'h-10': local.size === 'small' },
-      { 'h-14': local.size === 'large' },
+      { 'h-14': local.size === 'large' }
     ) }>
       <input
         { ...inputProps }
@@ -69,10 +69,10 @@ const Input: Component<IInputProps> = props => {
 
       <Show when={ local.prefixIcon }>
         <span class={ cn(
-          'absolute p-1 left-3 pointer-events-none select-none text-2xl',
+          'absolute p-1 left-3 pointer-events-none select-none text-xl',
           'hover:text-primary-color',
           'peer-hover:text-primary-color',
-          'peer-focus:text-primary-color',
+          'peer-focus:text-primary-color'
         ) }>
           { local.prefixIcon }
         </span>
