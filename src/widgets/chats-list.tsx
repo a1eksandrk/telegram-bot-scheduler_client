@@ -5,9 +5,12 @@ import { For, type Component } from 'solid-js'
 
 interface IChatsListProps {
   list?: IChatItem[]
+  onClick?: (id: string) => void
 }
 
 export const ChatsList: Component<IChatsListProps> = props => {
+  const handleClick = (id: string): void => props.onClick?.(id)
+
   return (
     <div class='h-full overflow-hidden'>
       <ul class={ cn('flex flex-col p-2 h-full overflow-auto') }>
@@ -15,7 +18,7 @@ export const ChatsList: Component<IChatsListProps> = props => {
           {
             item => (
               <li>
-                <ChatItem item={ item } />
+                <ChatItem item={ item } onClick={ handleClick } />
               </li>
             )
           }
