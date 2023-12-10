@@ -30,6 +30,7 @@ export const SearchInput: Component<ISearchInputProps> = props => {
         size="small"
         name="search"
         placeholder="Поиск"
+        autocomplete="off"
         prefixIcon={ <IoSearchOutline /> }
         class={ cn('rounded-3xl') }
       />
