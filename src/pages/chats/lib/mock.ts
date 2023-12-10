@@ -11,7 +11,7 @@ const generateMockChatData = (): IChatItem[] => {
         .padStart(2, '0')}:${Math.floor(Math.random() * 60)
         .toString()
         .padStart(2, '0')}`,
-      message: `Random message ${i + 1}`,
+      message: `Random message lorem ipsum dolor sit, amet consectetur adipisicing elit ${i + 1}`,
       count: Math.floor(Math.random() * 10),
       image: 'https://placehold.co/600x400'
     })
