@@ -26,22 +26,20 @@ export const ChatItem: Component<IChatItemProps> = props => {
       use:rippleClick
       onClick={ handleClick }
       class={ cn(
-        'group flex flex-row items-center gap-2 h-20 p-3 rounded-lg cursor-pointer select-none transition-colors overflow-hidden',
+        'group grid grid-rows-1 grid-cols-min-first-2 items-center gap-2 h-20 p-3 rounded-lg cursor-pointer select-none transition-colors overflow-hidden',
         'hover:bg-[#f3f3f4]',
         'focus:outline-none focus:bg-primary-color'
       ) }
     >
       <Avatar
         src={ props.item.image }
-        fallbackClass={ cn(
-          'group-focus:bg-white group-focus:text-primary-color'
-        ) }
+        fallbackClass={ cn('group-focus:bg-white group-focus:text-primary-color') }
       >
         { props.item.name[0].toUpperCase() }
       </Avatar>
 
-      <div class={ cn('grow') }>
-        <p class={ cn('flex gap-2 justify-between max-w-xs') }>
+      <div>
+        <p class={ cn('flex gap-2 justify-between') }>
           <strong
             class={ cn(
               'truncate font-normal transition-colors',
@@ -62,7 +60,7 @@ export const ChatItem: Component<IChatItemProps> = props => {
           </time>
         </p>
 
-        <p class={ cn('flex gap-2 justify-between max-w-xs') }>
+        <p class={ cn('flex gap-2 justify-between') }>
           <span
             class={ cn(
               'text-secondary-text-color truncate transition-colors',
