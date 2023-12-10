@@ -27,4 +27,8 @@
 @layer utilities {
   .h-d-screen { height: 100dvh; }
   .w-d-screen { width: 100dvw; }
+
+  .grid-cols-min-first-2 {
+    grid-template-columns: minmax(min-content, auto) minmax(0, 1fr);
+  }
 }
