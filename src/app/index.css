@@ -5,6 +5,7 @@
 :root {
   --surface-color: 255, 255, 255;
   --primary-color: 51, 144, 236;
+  --secondary-color: 196, 201, 204;
   --danger-color: 223, 63, 63;
   --primary-text-color:  0, 0, 0;
   --secondary-text-color: 112, 117, 121;
@@ -15,6 +16,7 @@
   :root {
     --surface-color: 33, 33, 33;
     --primary-color: 134, 116, 225;
+    --secondary-color: 112, 117, 121;
     --danger-color: 255, 89, 89;
     --primary-text-color: 255, 255, 255;
     --secondary-text-color: 170, 170, 170;

@@ -18,6 +18,7 @@ export default {
       colors: {
         "surface-color": "rgb(var(--surface-color), <alpha-value>)",
         "primary-color": "rgb(var(--primary-color), <alpha-value>)",
+        "secondary-color": "rgb(var(--secondary-color), <alpha-value>)",
         "danger-color": "rgb(var(--danger-color), <alpha-value>)",
         "primary-text-color": "rgb(var(--primary-text-color), <alpha-value>)",
         "secondary-text-color": "rgb(var(--secondary-text-color), <alpha-value>)",
