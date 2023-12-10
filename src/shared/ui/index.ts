@@ -1,5 +1,6 @@
-import Input from './input'
+import Badge from './badge'
 import Button from './button'
 import IconButton from './icon-button'
+import Input from './input'
 
-export { Input, Button, IconButton }
+export { Badge, Button, IconButton, Input }
