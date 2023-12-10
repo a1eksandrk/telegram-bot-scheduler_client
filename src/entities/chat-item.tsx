@@ -5,6 +5,7 @@ import { rippleClick, className as cn } from '@/shared/lib'
 import type { Component } from 'solid-js'
 
 export interface IChatItem {
+  id: string
   name: string
   time: string
   message: string
@@ -14,11 +15,11 @@ export interface IChatItem {
 
 interface IChatItemProps {
   item: IChatItem
-  onClick?: () => void
+  onClick?: (id: string) => void
 }
 
 export const ChatItem: Component<IChatItemProps> = props => {
-  const handleClick = (): void => props.onClick?.()
+  const handleClick = (): void => props.onClick?.(props.item.id)
 
   return (
     <a
@@ -26,20 +27,24 @@ export const ChatItem: Component<IChatItemProps> = props => {
       use:rippleClick
       onClick={ handleClick }
       class={ cn(
-        'group grid grid-rows-1 grid-cols-min-first-2 items-center gap-2 h-20 p-3 rounded-lg cursor-pointer select-none transition-colors overflow-hidden',
+        'group flex flex-row items-center gap-2 h-20 p-3 rounded-lg cursor-pointer select-none transition-colors',
         'hover:bg-[#f3f3f4]',
         'focus:outline-none focus:bg-primary-color'
       ) }
     >
       <Avatar
         src={ props.item.image }
-        fallbackClass={ cn('group-focus:bg-white group-focus:text-primary-color') }
+        class={ cn('grow-0 shrink-0 basis-auto') }
+        fallbackClass={ cn(
+          'grow-0 shrink-0 basis-auto',
+          'group-focus:bg-white group-focus:text-primary-color'
+        ) }
       >
         { props.item.name[0].toUpperCase() }
       </Avatar>
 
-      <div>
-        <p class={ cn('flex gap-2 justify-between') }>
+      <div class={ cn('flex-1 overflow-hidden') }>
+        <div class={ cn('flex gap-2 justify-between') }>
           <strong
             class={ cn(
               'truncate font-normal transition-colors',
@@ -58,17 +63,17 @@ export const ChatItem: Component<IChatItemProps> = props => {
           >
             { props.item.time }
           </time>
-        </p>
+        </div>
 
-        <p class={ cn('flex gap-2 justify-between') }>
-          <span
+        <div class={ cn('flex gap-2 justify-between') }>
+          <div
             class={ cn(
-              'text-secondary-text-color truncate transition-colors',
+              'truncate text-secondary-text-color transition-colors',
               'group-focus:text-white'
             ) }
           >
             { props.item.message }
-          </span>
+          </div>
 
           <Badge
             class={ cn(
@@ -78,7 +83,7 @@ export const ChatItem: Component<IChatItemProps> = props => {
           >
             { props.item.count }
           </Badge>
-        </p>
+        </div>
       </div>
     </a>
   )
