@@ -20,8 +20,10 @@ rules:
     - error
     - always
 
+  solid/no-unknown-namespaces: 0
   solid/no-react-specific-props: error
 
   "@typescript-eslint/strict-boolean-expressions": 0
   "@typescript-eslint/consistent-type-assertions": 0
+  "@typescript-eslint/consistent-type-definitions": 0
   "@typescript-eslint/consistent-indexed-object-style": 0
