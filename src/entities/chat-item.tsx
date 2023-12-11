@@ -1,3 +1,5 @@
+import { A } from '@solidjs/router'
+
 import { Avatar } from '@/entities/avatar'
 import { Badge } from '@/shared/ui'
 import { rippleClick, className as cn } from '@/shared/lib'
@@ -15,21 +17,21 @@ export interface IChatItem {
 
 interface IChatItemProps {
   item: IChatItem
-  onClick?: (id: string) => void
 }
 
 export const ChatItem: Component<IChatItemProps> = props => {
-  const handleClick = (): void => props.onClick?.(props.item.id)
-
   return (
-    <a
+    <A
+      href={ `/chat/${props.item.id}` }
       tabIndex="0"
       use:rippleClick
-      onClick={ handleClick }
+      ondragstart={ e => { e.preventDefault() } }
       class={ cn(
         'group flex flex-row items-center gap-2 h-20 p-3 rounded-lg cursor-pointer select-none transition-colors',
         'hover:bg-[#f3f3f4]',
-        'focus:outline-none focus:bg-primary-color'
+        'dark:hover:bg-[#2b2b2b]',
+        'focus:outline-none focus:bg-primary-color',
+        'focus:hover:bg-primary-color'
       ) }
     >
       <Avatar
@@ -85,6 +87,6 @@ export const ChatItem: Component<IChatItemProps> = props => {
           </Badge>
         </div>
       </div>
-    </a>
+    </A>
   )
 }
