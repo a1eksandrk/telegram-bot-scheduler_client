@@ -4,9 +4,9 @@ import { className as cn } from '@/shared/lib'
 
 import type { Component, JSX } from 'solid-js'
 
-type BaseButton = Omit<JSX.ButtonHTMLAttributes<HTMLButtonElement>, 'children'>
+type TBaseButton = Omit<JSX.ButtonHTMLAttributes<HTMLButtonElement>, 'children'>
 
-interface IIconButtonProps extends BaseButton {
+interface IIconButtonProps extends TBaseButton {
   icon?: JSX.Element
 }
 
