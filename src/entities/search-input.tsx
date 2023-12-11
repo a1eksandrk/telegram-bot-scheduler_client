@@ -10,10 +10,15 @@ interface ISearchInputProps {
   onSearch?: (value: string) => void
 }
 
+interface ISearchForm {
+  search: string
+}
+
 export const SearchInput: Component<ISearchInputProps> = props => {
-  const { form, values } = createForm<{ search: '' }>({
+  const { form, values } = createForm<ISearchForm>({
     initialValues: { search: '' },
-    onInput: props.onSearch
+    onInput: (_, value) => props.onSearch?.(value),
+    onReset: () => props.onSearch?.('')
   })
 
   const hasReset = (): boolean => !!values().search
