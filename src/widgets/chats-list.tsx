@@ -4,12 +4,13 @@ import { className as cn } from '@/shared/lib'
 import { For, type Component } from 'solid-js'
 
 interface IChatsListProps {
+  class?: string
   list?: IChatItem[]
 }
 
 export const ChatsList: Component<IChatsListProps> = props => {
   return (
-    <div class='overflow-auto'>
+    <div class={ cn('overflow-auto', props.class) }>
       <ul class={ cn('flex flex-col p-2') }>
         <For each={ props.list }>
           {
