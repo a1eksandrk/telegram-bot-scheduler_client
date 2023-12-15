@@ -5,15 +5,7 @@ import { Badge } from '@/shared/ui'
 import { rippleClick, className as cn } from '@/shared/lib'
 
 import type { Component } from 'solid-js'
-
-export interface IChatItem {
-  id: string
-  name: string
-  time: string
-  message: string
-  count: number
-  image?: string
-}
+import type { IChatItem } from '@/shared/types'
 
 interface IChatItemProps {
   item: IChatItem
