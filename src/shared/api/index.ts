@@ -1,7 +1,17 @@
-import { mockChatsList } from '@/shared/lib'
+import mockChatsJSON from '@/shared/assets/chats.json'
 
-import type { IChatItem } from '@/shared/types'
+import type { IChatView } from '@/shared/types'
 
-export const fetchChatsList = async (): Promise<IChatItem[]> => {
-  return await new Promise(resolve => setTimeout(() => { resolve(mockChatsList) }, 1000))
+export const fetchChats = async (): Promise<IChatView[]> => {
+  return await new Promise(resolve => setTimeout(() => { resolve(mockChatsJSON) }, 100))
+}
+
+export const fetchChat = async (chatListItemId: string): Promise<IChatView> => {
+  const chatListItem = mockChatsJSON.find(({ id }) => id === chatListItemId)
+
+  return await new Promise((resolve, reject) => setTimeout(() => {
+    if (chatListItem) resolve(chatListItem)
+
+    reject(Error('{ code: 404 }'))
+  }, 100))
 }

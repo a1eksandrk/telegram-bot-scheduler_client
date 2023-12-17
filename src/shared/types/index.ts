@@ -4,11 +4,24 @@ export type TValidation<FormType extends IBaseFormType> = Record<keyof FormType,
 
 export type TFormErrors<FormType extends IBaseFormType> = Record<keyof FormType, boolean>
 
-export interface IChatItem {
+export interface IMessage {
+  id: string
+  time: string
+  text: string
+}
+
+export interface IChatView {
   id: string
   name: string
-  time: string
-  message: string
   count: number
-  image?: string
+  message: IMessage
+  avatar?: string
+}
+
+export interface IChat {
+  id: string
+  name: string
+  count: number
+  messages: IMessage[]
+  avatar?: string
 }

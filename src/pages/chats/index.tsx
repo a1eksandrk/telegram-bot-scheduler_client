@@ -2,23 +2,23 @@ import { createSignal } from 'solid-js'
 import { IoMenuOutline } from 'solid-icons/io'
 
 import { Header } from '@/widgets/header'
-import { ChatsList } from '@/widgets/chats-list'
+import { Chats } from '@/widgets/chats'
 import { IconButton, Loader } from '@/shared/ui'
 import { className as cn, useFetchedRouteData } from '@/shared/lib'
 
+import { filterChatsList } from './lib'
+
 import type { Component } from 'solid-js'
-import type { IChatItem } from '@/shared/types'
+import type { IChatView } from '@/shared/types'
 
 export { chatsData } from './model'
 
 export const ChatsPage: Component = () => {
   const [search, setSearch] = createSignal<string>('')
 
-  const [chatsList, isChatListLoading] = useFetchedRouteData<IChatItem[]>()
+  const [chats, isChatsLoading] = useFetchedRouteData<IChatView[]>()
 
-  const filteredChatsList = (): IChatItem[] | undefined => chatsList()?.filter(
-    item => item.name.toLowerCase().includes(search().toLowerCase())
-  )
+  const filteredChatsList = (): IChatView[] => filterChatsList(chats(), search())
 
   return (
     <main class={ cn(
@@ -31,8 +31,8 @@ export const ChatsPage: Component = () => {
       ) }>
         <Header control={ <IconButton icon={ <IoMenuOutline /> } /> } onSearch={ setSearch } />
 
-        <Loader isLoading={ isChatListLoading() }>
-          <ChatsList class={ cn('grow') } list={ filteredChatsList() } />
+        <Loader isLoading={ isChatsLoading() }>
+          <Chats class={ cn('grow') } items={ filteredChatsList() } />
         </Loader>
       </section>
     </main>

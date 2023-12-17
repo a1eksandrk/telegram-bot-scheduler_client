@@ -5,13 +5,13 @@ import { Badge } from '@/shared/ui'
 import { rippleClick, className as cn } from '@/shared/lib'
 
 import type { Component } from 'solid-js'
-import type { IChatItem } from '@/shared/types'
+import type { IChatView } from '@/shared/types'
 
 interface IChatItemProps {
-  item: IChatItem
+  item: IChatView
 }
 
-export const ChatItem: Component<IChatItemProps> = props => {
+export const Chat: Component<IChatItemProps> = props => {
   return (
     <A
       href={ `/chat/${props.item.id}` }
@@ -27,7 +27,7 @@ export const ChatItem: Component<IChatItemProps> = props => {
       ) }
     >
       <Avatar
-        src={ props.item.image }
+        src={ props.item.avatar }
         class={ cn('grow-0 shrink-0 basis-auto') }
         fallbackClass={ cn(
           'grow-0 shrink-0 basis-auto',
@@ -49,13 +49,13 @@ export const ChatItem: Component<IChatItemProps> = props => {
           </strong>
 
           <time
-            dateTime={ props.item.time }
+            dateTime={ props.item.message.time }
             class={ cn(
               'text-xs text-secondary-text-color transition-colors',
               'group-focus:text-white'
             ) }
           >
-            { props.item.time }
+            { props.item.message.time }
           </time>
         </div>
 
@@ -66,7 +66,7 @@ export const ChatItem: Component<IChatItemProps> = props => {
               'group-focus:text-white'
             ) }
           >
-            { props.item.message }
+            { props.item.message.text }
           </div>
 
           <Badge
