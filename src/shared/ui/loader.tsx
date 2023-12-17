@@ -18,7 +18,7 @@ const Loader: ParentComponent<ILoaderProps> = props => {
 
   return (
     <Show when={ props.isLoading } fallback={ props.children }>
-      <div class={ cn('relative flex justify-center items-center', childrenClassName()) }>
+      <div class={ cn('relative flex justify-center items-center min-h-[2.5rem]', childrenClassName()) }>
         <span class={ cn('absolute border-surface-color h-10 w-10 animate-spin rounded-full border-4 border-t-primary-color') } />
       </div>
     </Show>
