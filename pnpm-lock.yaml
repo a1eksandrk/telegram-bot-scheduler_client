@@ -11,6 +11,9 @@ dependencies:
   clsx:
     specifier: ^2.0.0
     version: 2.0.0
+  solid-cached-resource:
+    specifier: ^0.5.5
+    version: 0.5.5
   solid-icons:
     specifier: ^1.1.0
     version: 1.1.0(solid-js@1.8.6)
@@ -2802,6 +2805,10 @@ packages:
     resolution: {integrity: sha512-g9Q1haeby36OSStwb4ntCGGGaKsaVSjQ68fBxoQcutl5fS1vuY18H3wSt3jFyFtrkx+Kz0V1G85A4MyAdDMi2Q==}
     engines: {node: '>=8'}
     dev: true
+
+  /solid-cached-resource@0.5.5:
+    resolution: {integrity: sha512-YH2DSDJVbrGuQvr48H56aXXigLLfqXVodCo7+ELWFPdQryet+S8Ia6z67FtDuudRyKRcmhQHwSROflu50iJCXg==}
+    dev: false
 
   /solid-icons@1.1.0(solid-js@1.8.6):
     resolution: {integrity: sha512-IesTfr/F1ElVwH2E1110s2RPXH4pujKfSs+koT8rwuTAdleO5s26lNSpqJV7D1+QHooJj18mcOiz2PIKs0ic+A==}
