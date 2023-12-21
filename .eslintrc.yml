@@ -23,6 +23,8 @@ rules:
   solid/no-unknown-namespaces: 0
   solid/no-react-specific-props: error
 
+  "@typescript-eslint/no-floating-promises": 0
+  "@typescript-eslint/prefer-nullish-coalescing": 0
   "@typescript-eslint/strict-boolean-expressions": 0
   "@typescript-eslint/consistent-type-assertions": 0
   "@typescript-eslint/consistent-type-definitions": 0
