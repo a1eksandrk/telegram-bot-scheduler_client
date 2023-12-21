@@ -9,7 +9,7 @@ export const isFunction = (entity: unknown): entity is ((...args: any) => any) =
 
 const EMPTY_OR_WHITESPACE_ONLY = /^\s*$/
 
-export const isEmptyString = (s: string): boolean => !EMPTY_OR_WHITESPACE_ONLY.test(s)
+export const isEmptyString = (s: string): boolean => EMPTY_OR_WHITESPACE_ONLY.test(s)
 
 export const getCurrentISODate = (): string => new Date().toISOString()
 

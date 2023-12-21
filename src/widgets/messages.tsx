@@ -11,10 +11,10 @@ interface IMessagesProps {
   messages?: IMessage[]
 }
 
-const scrollToBottom = (listElement?: HTMLUListElement): void => {
+const scrollToBottom = (listElement?: HTMLUListElement, behavior?: ScrollBehavior): void => {
   if (!listElement) return
 
-  listElement.scrollIntoView({ block: 'end' })
+  listElement.scrollIntoView({ block: 'end', behavior })
 }
 
 export const Messages: Component<IMessagesProps> = props => {
@@ -22,7 +22,7 @@ export const Messages: Component<IMessagesProps> = props => {
 
   createEffect(on(
     () => props.messages,
-    () => { scrollToBottom(uListRef) }
+    () => { scrollToBottom(uListRef, 'auto') }
   ))
 
   onMount(() => { scrollToBottom(uListRef) })
