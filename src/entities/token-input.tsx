@@ -44,7 +44,7 @@ export const TokenInput: Component<ITokenInputProps> = props => {
     <div class="relative flex items-center text-[#9e9e9e]">
       <Input
         { ...inputProps }
-        autocomplete=""
+        autocomplete="off"
         type={ type() }
         class={ cn({ 'text-4xl -tracking-widest': !show() }) }
       />
