@@ -1,7 +1,7 @@
 import { Show } from 'solid-js'
-import { IoCloseOutline, IoSearchOutline } from 'solid-icons/io'
+import { BiRegularSearch, BiRegularX } from 'solid-icons/bi'
 
-import { createForm, className as cn } from '@/shared/lib'
+import { className as cn, createForm } from '@/shared/lib'
 import { Input, IconButton } from '@/shared/ui'
 
 import type { Component } from 'solid-js'
@@ -36,14 +36,14 @@ export const SearchInput: Component<ISearchInputProps> = props => {
         name="search"
         placeholder="Поиск"
         autocomplete="off"
-        prefixIcon={ <IoSearchOutline /> }
+        prefixIcon={ <BiRegularSearch /> }
         class={ cn('rounded-3xl') }
       />
 
       <Show when={ hasReset() }>
         <IconButton
           type="reset"
-          icon={ <IoCloseOutline /> }
+          icon={ <BiRegularX /> }
           class={ cn(
             'absolute right-1',
             'hover:bg-primary-color/5',

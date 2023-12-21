@@ -23,7 +23,7 @@ const Input: Component<IInputProps> = props => {
 
   const id = (): string => inputProps?.id ?? inputId
 
-  const handleInput: JSX.EventHandler<HTMLInputElement, InputEvent> = event => {
+  const handleInput: JSX.InputEventHandler<HTMLInputElement, InputEvent> = event => {
     const hasValue = !isEmptyString(event.currentTarget.value)
 
     setHasValue(hasValue)

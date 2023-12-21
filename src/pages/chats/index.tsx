@@ -1,24 +1,24 @@
-import { createSignal } from 'solid-js'
-import { IoMenuOutline } from 'solid-icons/io'
+import { Switch, Match, createSignal } from 'solid-js'
+import { BiRegularMenu } from 'solid-icons/bi'
 
 import { Header } from '@/widgets/header'
 import { Chats } from '@/widgets/chats'
 import { IconButton, Loader } from '@/shared/ui'
 import { className as cn, useFetchedRouteData } from '@/shared/lib'
 
-import { filterChatsList } from './lib'
+import { filterChats } from './lib'
 
 import type { Component } from 'solid-js'
-import type { IChatView } from '@/shared/types'
+import type { IChat } from '@/shared/types'
 
 export { chatsData } from './model'
 
 export const ChatsPage: Component = () => {
   const [search, setSearch] = createSignal<string>('')
 
-  const [chats, isChatsLoading] = useFetchedRouteData<IChatView[]>()
+  const [chats] = useFetchedRouteData<IChat[]>()
 
-  const filteredChatsList = (): IChatView[] => filterChatsList(chats(), search())
+  const filteredChatsList = (): IChat[] => filterChats(chats(), search())
 
   return (
     <main class={ cn(
@@ -26,14 +26,20 @@ export const ChatsPage: Component = () => {
       'dark:bg-[#181818]'
     ) }>
       <section class={ cn(
-        'flex flex-col h-full w-[420px] border-l border-r border-border-color',
+        'flex flex-col h-full w-[500px] border-l border-r border-border-color',
         'dark:border-none dark:bg-surface-color'
       ) }>
-        <Header control={ <IconButton icon={ <IoMenuOutline /> } /> } onSearch={ setSearch } />
+        <Header control={ <IconButton icon={ <BiRegularMenu /> } /> } onSearch={ setSearch } />
 
-        <Loader isLoading={ isChatsLoading() }>
-          <Chats class={ cn('grow') } items={ filteredChatsList() } />
-        </Loader>
+        <Switch>
+          <Match when={ !chats.error && chats() }>
+            <Chats class={ cn('grow') } chats={ filteredChatsList() } />
+          </Match>
+
+          <Match when={ chats.loading }>
+            <Loader isLoading class={ cn('grow') } />
+          </Match>
+        </Switch>
       </section>
     </main>
   )

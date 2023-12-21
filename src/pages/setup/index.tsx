@@ -5,13 +5,12 @@ import { WatchingMonkeyEmoji } from '@/entities/watching-moneky-emoji'
 import { TokenAuthorizationForm } from '@/features/token-authorization'
 
 import type { Component } from 'solid-js'
-import type { TTokenAuthorizationSubmitHandler } from '@/features/token-authorization'
 
 export const SetupPage: Component = () => {
   const [isTokenVisible, setIsTokenVisible] = createSignal<boolean>(false)
 
-  const handleSubmit: TTokenAuthorizationSubmitHandler = (values, errors): void => {
-    console.log(values, errors)
+  const handleSubmit = (token: string): void => {
+    console.log(token)
   }
 
   return (

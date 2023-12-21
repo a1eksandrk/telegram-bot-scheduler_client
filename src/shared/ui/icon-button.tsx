@@ -1,6 +1,6 @@
 import { splitProps } from 'solid-js'
 
-import { className as cn } from '@/shared/lib'
+import { className as cn, rippleClick } from '@/shared/lib'
 
 import type { Component, JSX } from 'solid-js'
 
@@ -16,8 +16,9 @@ const IconButton: Component<IIconButtonProps> = props => {
   return (
     <button
       { ...buttonProps }
+      use:rippleClick
       class={ cn(
-        'flex justify-center items-center h-[40px] w-[40px] p-1 select-none text-xl rounded-full',
+        'relative flex justify-center items-center h-[40px] aspect-square p-1 select-none text-xl rounded-full',
         'hover:bg-secondary-text-color/5',
         'focus:outline-none focus:bg-secondary-text-color/5',
         local.class

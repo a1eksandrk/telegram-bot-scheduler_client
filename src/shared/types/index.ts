@@ -10,14 +10,6 @@ export interface IMessage {
   text: string
 }
 
-export interface IChatView {
-  id: string
-  name: string
-  count: number
-  message: IMessage
-  avatar?: string
-}
-
 export interface IChat {
   id: string
   name: string
@@ -25,3 +17,5 @@ export interface IChat {
   messages: IMessage[]
   avatar?: string
 }
+
+export type TMessageData = Omit<IMessage, 'id'>

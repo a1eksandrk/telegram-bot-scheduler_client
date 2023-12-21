@@ -1,14 +1,14 @@
-import type { IChatView } from '@/shared/types'
+import type { IChat } from '@/shared/types'
 
-export const filterChatsList = (chatsList: IChatView[] | undefined, search: string): IChatView[] => {
+export const filterChats = (chats: IChat[] | undefined, search: string): IChat[] => {
   const lowerCaseSearch = search.toLowerCase()
 
-  if (!chatsList) return []
+  if (!chats) return []
 
-  const checkSearchIncludes = (chat: IChatView): boolean => {
+  const checkSearchIncludes = (chat: IChat): boolean => {
     const lowerCaseName = chat.name.toLowerCase()
     return lowerCaseName.includes(lowerCaseSearch)
   }
 
-  return chatsList.filter(checkSearchIncludes)
+  return chats.filter(checkSearchIncludes)
 }

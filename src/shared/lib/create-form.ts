@@ -6,6 +6,7 @@ import type { Accessor, JSX } from 'solid-js'
 import type { IBaseFormType, TValidation, TFormErrors } from '@/shared/types'
 
 interface IForm {
+  ref: (el: HTMLFormElement) => void
   onInput: JSX.InputEventHandler<HTMLFormElement, InputEvent>
   onSubmit: JSX.EventHandler<HTMLFormElement, Event>
   onReset: () => void
@@ -21,6 +22,7 @@ interface IFormOptions<FormType extends IBaseFormType> {
 
 interface IFormController<FormType extends IBaseFormType> {
   form: IForm
+  formRef: Accessor<HTMLFormElement | undefined>
   values: Accessor<FormType>
   errors: Accessor<TFormErrors<FormType>>
 }
@@ -51,6 +53,7 @@ const validate = <FormType extends IBaseFormType>(values: FormType, validation?:
 }
 
 const createForm = <FormType extends IBaseFormType>({ initialValues, validation, onInput, onSubmit, onReset }: IFormOptions<FormType>): IFormController<FormType> => {
+  const [formRef, setFormRef] = createSignal<HTMLFormElement | undefined>()
   const [values, setValues] = createSignal<FormType>(initialValues)
   const [errors, setErrors] = createSignal<TFormErrors<FormType>>(getInitialErrors(initialValues, false))
 
@@ -88,10 +91,12 @@ const createForm = <FormType extends IBaseFormType>({ initialValues, validation,
 
   return {
     form: {
+      ref: setFormRef,
       onInput: handleInput,
       onSubmit: handleSubmit,
       onReset: handleReset
     },
+    formRef,
     values,
     errors
   }

@@ -1,21 +1,46 @@
-import { useNavigate, useParams } from '@solidjs/router'
-import { IoArrowBackOutline } from 'solid-icons/io'
+import { Switch, Match, createSignal } from 'solid-js'
+import { useNavigate, Navigate } from '@solidjs/router'
+import { BiRegularArrowBack } from 'solid-icons/bi'
 
 import { Header } from '@/widgets/header'
-import { IconButton } from '@/shared/ui'
-import { className as cn } from '@/shared/lib'
+import { Messages } from '@/widgets/messages'
+import { SendMessage } from '@/features/send-message'
+
+import { IconButton, Loader } from '@/shared/ui'
+import { postMessage } from '@/shared/api'
+import { className as cn, useFetchedRouteData } from '@/shared/lib'
+
+import { filterMessages } from './lib'
 
 import type { Component } from 'solid-js'
+import type { IChat, IMessage, TMessageData } from '@/shared/types'
 
-type TChatPageParams = {
-  id: string
-}
+export { chatData } from './model'
+
+const CHATS_PAGE_PATH = '/chats'
 
 export const ChatPage: Component = () => {
-  const params = useParams<TChatPageParams>()
+  const [search, setSearch] = createSignal<string>('')
+
   const navigate = useNavigate()
 
-  const navigateToChats = (): void => { navigate('/chats') }
+  const [chat, { refetch }] = useFetchedRouteData<IChat>()
+
+  const filteredMessages = (): IMessage[] | undefined => filterMessages(chat()?.messages, search())
+
+  const navigateToChatsPage = (): void => { navigate(CHATS_PAGE_PATH) }
+
+  const sendNewMessage = async (messageData: TMessageData): Promise<void> => {
+    const currentChat = chat()
+
+    if (!currentChat) return
+
+    const chatId = currentChat.id
+
+    await postMessage({ chatId, messageData })
+
+    await refetch()
+  }
 
   return (
     <main class={ cn(
@@ -23,12 +48,26 @@ export const ChatPage: Component = () => {
       'dark:bg-[#181818]'
     ) }>
       <section class={ cn(
-        'flex flex-col h-full w-[420px] border-l border-r border-border-color',
+        'flex flex-col h-full w-[500px] border-l border-r border-border-color',
         'dark:border-none dark:bg-surface-color'
       ) }>
-        <Header control={ <IconButton icon={ <IoArrowBackOutline /> } onClick={ navigateToChats } /> } />
+        <Header control={ <IconButton icon={ <BiRegularArrowBack /> } onClick={ navigateToChatsPage } /> } onSearch={ setSearch } />
 
-        <div>Id: { params.id }</div>
+        <Switch>
+          <Match when={ !chat.error && chat() }>
+            <Messages class={ cn('grow') } messages={ filteredMessages() } />
+          </Match>
+
+          <Match when={ chat.loading }>
+            <Loader isLoading class={ cn('grow') } />
+          </Match>
+
+          <Match when={ chat.error }>
+            <Navigate href={ CHATS_PAGE_PATH } />
+          </Match>
+        </Switch>
+
+        <SendMessage onSend={ sendNewMessage } />
       </section>
     </main>
   )

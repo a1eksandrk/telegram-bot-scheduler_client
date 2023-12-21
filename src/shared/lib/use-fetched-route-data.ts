@@ -1,14 +1,11 @@
 import { useRouteData } from '@solidjs/router'
 
-import type { Resource } from 'solid-js'
+import type { ResourceReturn } from 'solid-js'
 
-type TUseFetchedRouteDataReturn<RouteDataType> = [Resource<RouteDataType>, () => boolean]
+const useFetchedRouteData = <RouteDataType>(): ResourceReturn<RouteDataType> => {
+  const resource = useRouteData<() => ResourceReturn<RouteDataType>>()
 
-const useFetchedRouteData = <RouteDataType>(): TUseFetchedRouteDataReturn<RouteDataType> => {
-  const data = useRouteData<() => Resource<RouteDataType>>()
-  const isLoading = (): boolean => !data()
-
-  return [data, isLoading]
+  return resource
 }
 
 export default useFetchedRouteData

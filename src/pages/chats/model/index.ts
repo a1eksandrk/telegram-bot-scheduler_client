@@ -1,15 +1,10 @@
-import { createCachedResource } from 'solid-cached-resource'
+import { createResource } from 'solid-js'
 
 import { fetchChats } from '@/shared/api'
 
-import type { Resource } from 'solid-js'
-import type { IChatView } from '@/shared/types'
+import type { ResourceReturn } from 'solid-js'
+import type { IChat } from '@/shared/types'
 
-export const chatsData = (): Resource<IChatView[]> => {
-  const [chats] = createCachedResource<IChatView[], typeof fetchChats>(
-    () => ['chatsData'],
-    fetchChats
-  )
-
-  return chats
+export const chatsData = (): ResourceReturn<IChat[]> => {
+  return createResource(fetchChats)
 }

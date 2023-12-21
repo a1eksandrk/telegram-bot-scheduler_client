@@ -3,16 +3,14 @@ import { Button } from '@/shared/ui'
 import { createForm, isEmptyString, className as cn } from '@/shared/lib'
 
 import type { Component } from 'solid-js'
-import type { TValidation, TFormErrors } from '@/shared/types'
-
-export type TTokenAuthorizationSubmitHandler = (values: IFormData, errors: TFormErrors<IFormData>) => void
+import type { TValidation } from '@/shared/types'
 
 interface IFormData { token: string }
 
 interface ITokenAuthorizationForm {
   isTokenVisible?: boolean
   onTokenVisibleChange?: (showToken: boolean) => void
-  onSubmit?: TTokenAuthorizationSubmitHandler
+  onSubmit?: (token: string) => void
 }
 
 const initialValues: IFormData = { token: '' }
@@ -22,7 +20,11 @@ export const TokenAuthorizationForm: Component<ITokenAuthorizationForm> = props 
   const { form, errors } = createForm<IFormData>({
     initialValues,
     validation,
-    onSubmit: props.onSubmit
+    onSubmit: ({ token }, errors) => {
+      if (errors.token) return
+
+      props.onSubmit?.(token)
+    }
   })
 
   const alert = (): boolean => errors().token
