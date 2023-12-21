@@ -23,6 +23,7 @@ export default {
         "primary-text-color": "rgb(var(--primary-text-color), <alpha-value>)",
         "secondary-text-color": "rgb(var(--secondary-text-color), <alpha-value>)",
         "border-color": "rgb(var(--border-color), <alpha-value>)",
+        "message-bubble-color": "rgb(var(--message-bubble-color), <alpha-value>)",
       }
     },
   },

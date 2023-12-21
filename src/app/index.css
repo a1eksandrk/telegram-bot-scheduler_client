@@ -10,6 +10,7 @@
   --primary-text-color:  0, 0, 0;
   --secondary-text-color: 112, 117, 121;
   --border-color: 223, 225, 229;
+  --message-bubble-color: 227, 254, 224;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -21,6 +22,7 @@
     --primary-text-color: 255, 255, 255;
     --secondary-text-color: 170, 170, 170;
     --border-color: 47, 47, 47;
+    --message-bubble-color: 134, 116, 225;
   }
 }
 
