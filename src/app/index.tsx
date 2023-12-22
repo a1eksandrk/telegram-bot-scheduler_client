@@ -1,7 +1,9 @@
 import { Router, Navigate, useRoutes } from '@solidjs/router'
 
 import { SetupPage } from '@/pages/setup'
-import { ChatsPage } from '@/pages/chats'
+import { ChatsPage, chatsData } from '@/pages/chats'
+import { ChatPage, chatData } from '@/pages/chat'
+import { router } from '@/shared/models'
 
 import type { Component } from 'solid-js'
 import type { RouteDefinition } from '@solidjs/router'
@@ -15,11 +17,17 @@ const routes: RouteDefinition[] = [
   },
   {
     path: '/chats',
+    data: chatsData,
     component: ChatsPage
   },
   {
+    path: '/chat/:id',
+    data: chatData,
+    component: ChatPage
+  },
+  {
     path: '*',
-    component: () => <Navigate href="/setup" />
+    component: () => <Navigate href={ router.toSetup } />
   }
 ]
 

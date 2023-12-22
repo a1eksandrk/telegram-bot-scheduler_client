@@ -9,6 +9,7 @@ import { SendMessage } from '@/features/send-message'
 import { IconButton, Loader } from '@/shared/ui'
 import { postMessage } from '@/shared/api'
 import { className as cn, useFetchedRouteData } from '@/shared/lib'
+import { router } from '@/shared/models'
 
 import { filterMessages } from './lib'
 
@@ -16,8 +17,6 @@ import type { Component } from 'solid-js'
 import type { IChat, IMessage, TMessageData } from '@/shared/types'
 
 export { chatData } from './model'
-
-const CHATS_PAGE_PATH = '/chats'
 
 export const ChatPage: Component = () => {
   const [search, setSearch] = createSignal<string>('')
@@ -28,7 +27,7 @@ export const ChatPage: Component = () => {
 
   const filteredMessages = (): IMessage[] | undefined => filterMessages(chat()?.messages, search())
 
-  const navigateToChatsPage = (): void => { navigate(CHATS_PAGE_PATH) }
+  const navigateToChatsPage = (): void => { navigate(router.toChats()) }
 
   const sendNewMessage = async (messageData: TMessageData): Promise<void> => {
     const currentChat = chat()
@@ -63,7 +62,7 @@ export const ChatPage: Component = () => {
           </Match>
 
           <Match when={ chat.error }>
-            <Navigate href={ CHATS_PAGE_PATH } />
+            <Navigate href={ router.toChats } />
           </Match>
         </Switch>
 

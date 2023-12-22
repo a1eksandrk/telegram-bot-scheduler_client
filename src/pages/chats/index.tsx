@@ -1,10 +1,12 @@
 import { Switch, Match, createSignal } from 'solid-js'
-import { BiRegularMenu } from 'solid-icons/bi'
+import { useNavigate } from '@solidjs/router'
+import { BiRegularExit } from 'solid-icons/bi'
 
 import { Header } from '@/widgets/header'
 import { Chats } from '@/widgets/chats'
 import { IconButton, Loader } from '@/shared/ui'
 import { className as cn, useFetchedRouteData } from '@/shared/lib'
+import { router } from '@/shared/models'
 
 import { filterChats } from './lib'
 
@@ -16,9 +18,13 @@ export { chatsData } from './model'
 export const ChatsPage: Component = () => {
   const [search, setSearch] = createSignal<string>('')
 
+  const navigate = useNavigate()
+
   const [chats] = useFetchedRouteData<IChat[]>()
 
   const filteredChatsList = (): IChat[] => filterChats(chats(), search())
+
+  const disconnectToken = (): void => { navigate(router.toSetup()) }
 
   return (
     <main class={ cn(
@@ -29,7 +35,7 @@ export const ChatsPage: Component = () => {
         'flex flex-col h-full w-[500px] border-l border-r border-border-color',
         'dark:border-none dark:bg-surface-color'
       ) }>
-        <Header control={ <IconButton icon={ <BiRegularMenu /> } /> } onSearch={ setSearch } />
+        <Header control={ <IconButton icon={ <BiRegularExit /> } onClick={ disconnectToken } /> } onSearch={ setSearch } />
 
         <Switch>
           <Match when={ !chats.error && chats() }>

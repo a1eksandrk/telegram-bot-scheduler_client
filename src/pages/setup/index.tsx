@@ -1,16 +1,22 @@
 import { createSignal } from 'solid-js'
+import { useNavigate } from '@solidjs/router'
 
-import { className as cn } from '@/shared/lib'
 import { WatchingMonkeyEmoji } from '@/entities/watching-moneky-emoji'
 import { TokenAuthorizationForm } from '@/features/token-authorization'
+import { className as cn } from '@/shared/lib'
+import { router } from '@/shared/models'
 
 import type { Component } from 'solid-js'
 
 export const SetupPage: Component = () => {
   const [isTokenVisible, setIsTokenVisible] = createSignal<boolean>(false)
 
-  const handleSubmit = (token: string): void => {
-    console.log(token)
+  const navigate = useNavigate()
+
+  const navigateToChatsPage = (): void => { navigate(router.toChats()) }
+
+  const authorizeToken = (token: string): void => {
+    navigateToChatsPage()
   }
 
   return (
@@ -31,7 +37,7 @@ export const SetupPage: Component = () => {
         <TokenAuthorizationForm
           isTokenVisible={ isTokenVisible() }
           onTokenVisibleChange={ setIsTokenVisible }
-          onSubmit={ handleSubmit }
+          onSubmit={ authorizeToken }
         />
       </section>
     </main>
