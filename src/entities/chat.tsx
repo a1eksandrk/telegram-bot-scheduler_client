@@ -2,7 +2,7 @@ import { A } from '@solidjs/router'
 
 import { Avatar } from '@/entities/avatar'
 import { Badge } from '@/shared/ui'
-import { className as cn, convertISODateToTime, rippleClick } from '@/shared/lib'
+import { className as cn, convertISOToTime, rippleClick } from '@/shared/lib'
 
 import { Show, type Component } from 'solid-js'
 import type { IChat, IMessage } from '@/shared/types'
@@ -14,7 +14,7 @@ interface IChatItemProps {
 export const Chat: Component<IChatItemProps> = props => {
   const lastMessage = (): IMessage | undefined => props.chat.messages.at(-1)
 
-  const time = (): string | undefined => { return convertISODateToTime(lastMessage()?.time) }
+  const time = (): string | undefined => { return convertISOToTime(lastMessage()?.time, { hour: '2-digit', minute: '2-digit' }) }
 
   return (
     <A

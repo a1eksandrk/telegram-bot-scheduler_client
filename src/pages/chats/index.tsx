@@ -2,7 +2,7 @@ import { Switch, Match, createSignal } from 'solid-js'
 import { useNavigate } from '@solidjs/router'
 import { BiRegularExit } from 'solid-icons/bi'
 
-import { Header } from '@/widgets/header'
+import { Header } from '@/entities/header'
 import { Chats } from '@/widgets/chats'
 import { IconButton, Loader } from '@/shared/ui'
 import { className as cn, useFetchedRouteData } from '@/shared/lib'

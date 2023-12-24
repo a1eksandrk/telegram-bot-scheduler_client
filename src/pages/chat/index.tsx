@@ -2,7 +2,7 @@ import { Switch, Match, createSignal } from 'solid-js'
 import { useNavigate, Navigate } from '@solidjs/router'
 import { BiRegularArrowBack } from 'solid-icons/bi'
 
-import { Header } from '@/widgets/header'
+import { Header } from '@/entities/header'
 import { Messages } from '@/widgets/messages'
 import { SendMessage } from '@/features/send-message'
 

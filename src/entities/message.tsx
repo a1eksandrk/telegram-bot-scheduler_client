@@ -1,4 +1,4 @@
-import { className as cn, convertISODateToTime } from '@/shared/lib'
+import { className as cn, convertISOToDate } from '@/shared/lib'
 
 import type { Component } from 'solid-js'
 import type { IMessage } from '@/shared/types'
@@ -9,7 +9,7 @@ interface IMessageProps {
 
 export const Message: Component<IMessageProps> = props => {
   const text = (): string => props.message.text.trim()
-  const time = (): string | undefined => { return convertISODateToTime(props.message.time) }
+  const time = (): string | undefined => { return convertISOToDate(props.message.time, { hour: '2-digit', minute: '2-digit' }) }
 
   return (
     <div class='flex flex-col gap-1 p-2 rounded-2xl bg-message-bubble-color'>

@@ -29,4 +29,5 @@
 @layer utilities {
   .h-d-screen { height: 100dvh; }
   .w-d-screen { width: 100dvw; }
+  .dark-scheme { color-scheme: dark; }
 }
