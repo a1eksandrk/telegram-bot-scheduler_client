@@ -52,6 +52,7 @@ export const SendMessage: Component<ISendMessageProps> = props => {
   return (
     <form { ...form } class={ cn('') }>
       <div class={ cn('p-2 border-t border-border-color') }>
+        {/* TODO: ! replace with cross-platform datetime picker component */}
         <Input
           name='time'
           size='small'
