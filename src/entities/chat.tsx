@@ -41,7 +41,7 @@ export const Chat: Component<IChatItemProps> = props => {
         { props.chat.name[0].toUpperCase() }
       </Avatar>
 
-      <div class={ cn('flex flex-col justify-between mb-auto overflow-hidden') }>
+      <div class={ cn('flex flex-col grow justify-between mb-auto overflow-hidden') }>
         <div class={ cn('flex gap-2 justify-between') }>
           <strong
             class={ cn(

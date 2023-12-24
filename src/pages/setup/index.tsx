@@ -20,11 +20,14 @@ export const SetupPage: Component = () => {
   }
 
   return (
-    <main class={ cn('flex justify-center items-center w-d-screen h-d-screen') }>
-      <section class={ cn('flex flex-col h-1/2 items-center') }>
+    <main class={ cn(
+      'flex justify-center items-center w-d-screen h-d-screen pl-6 pr-6',
+      'sm:p-0'
+    ) }>
+      <section class={ cn('flex flex-col w-full h-1/2 items-center') }>
         <WatchingMonkeyEmoji isWatching={ isTokenVisible() } />
 
-        <p class={ cn('flex flex-col gap-3 items-center mt-12 mb-12 text-3xl font-medium') }>
+        <p class={ cn('flex flex-col gap-3 items-center mt-12 mb-12 text-3xl text-center font-medium') }>
           Введите токен вашего бота
 
           <span
